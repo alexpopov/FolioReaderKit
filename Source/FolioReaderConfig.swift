@@ -22,7 +22,7 @@ public enum FolioReaderScrollDirection: Int {
     case horizontal
     
     /// Sections scroll horizontal and content scroll on vertical
-	case horizontalWithVerticalContent
+    case horizontalWithVerticalContent
 
     /// The default scroll direction, if not overridden; works as .vertical
     case defaultVertical
@@ -127,12 +127,12 @@ open class FolioReaderConfig: NSObject {
     open var nightModeSeparatorColor = UIColor(white: 0.5, alpha: 0.2)
     
     /// Media overlay or TTS selection color
-    open lazy var mediaOverlayColor: UIColor! = self.tintColor
+    open var mediaOverlayColor: UIColor! = self.tintColor
     
     // MARK: Custom actions
     
-	/// hide the navigation bar and the bottom status view 
-	open var hideBars = false
+    /// hide the navigation bar and the bottom status view
+    open var hideBars = false
 
     /// If `canChangeScrollDirection` is `true` it will be overrided by user's option.
     open var scrollDirection: FolioReaderScrollDirection = .defaultVertical
@@ -171,8 +171,8 @@ open class FolioReaderConfig: NSObject {
     /// Localizes Content title
     open var localizedContentsTitle = NSLocalizedString("Contents", comment: "")
 
-	/// Use the readers `UIMenuController` which enables the highlighting etc. The default is `true`. If set to false it's possible to modify the shared `UIMenuController` for yourself. Note: This doesn't disable the text selection in the web view.
-	open var useReaderMenuController = true
+    /// Use the readers `UIMenuController` which enables the highlighting etc. The default is `true`. If set to false it's possible to modify the shared `UIMenuController` for yourself. Note: This doesn't disable the text selection in the web view.
+    open var useReaderMenuController = true
 	
     /// Localizes Highlight date format. This is a `dateFormat` from `NSDateFormatter`, so be careful 🤔
     open var localizedHighlightsDateFormat = "MMM dd, YYYY | HH:mm"
