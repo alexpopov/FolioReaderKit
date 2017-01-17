@@ -162,7 +162,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         extendedLayoutIncludesOpaqueBars = true
         configureNavBar()
 
-		// Page indicator view
+        // Page indicator view
         if !readerConfig.hidePageIndicator {
             pageIndicatorView = FolioReaderPageIndicator(frame: self.frameForPageIndicatorView())
             if let pageIndicatorView = pageIndicatorView {
@@ -170,11 +170,11 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
 
-		scrollScrubber = ScrollScrubber(frame: self.frameForScrollScrubber())
-		scrollScrubber?.delegate = self
-		if let scrollScrubber = scrollScrubber {
-			view.addSubview(scrollScrubber.slider)
-		}
+        scrollScrubber = ScrollScrubber(frame: self.frameForScrollScrubber())
+        scrollScrubber?.delegate = self
+        if let scrollScrubber = scrollScrubber {
+          view.addSubview(scrollScrubber.slider)
+        }
     }
     
     override open func viewWillAppear(_ animated: Bool) {
@@ -185,42 +185,42 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         pageIndicatorView?.reloadView(updateShadow: true)
     }
 
-	override open func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
+    override open func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-		screenBounds = view.frame
-        loadingView.center = view.center
+        screenBounds = view.frame
+            loadingView.center = view.center
 
-		setPageSize(UIApplication.shared.statusBarOrientation)
-		updateSubviewFrames()
-	}
+        setPageSize(UIApplication.shared.statusBarOrientation)
+        updateSubviewFrames()
+    }
 
-	// MARK: Layout
+    // MARK: Layout
 
-	/**
-	Enable or disable the scrolling between chapters (`FolioReaderPage`s). If this is enabled it's only possible to read the current chapter. If another chapter should be displayed is has to be triggered programmatically with `changePageWith`.
+    /**
+    Enable or disable the scrolling between chapters (`FolioReaderPage`s). If this is enabled it's only possible to read the current chapter. If another chapter should be displayed is has to be triggered programmatically with `changePageWith`.
 
-	- parameter scrollEnabled: `Bool` which enables or disables the scrolling between `FolioReaderPage`s.
-	*/
-	open func enableScrollBetweenChapters(scrollEnabled: Bool) {
-		self.collectionView.isScrollEnabled = scrollEnabled
-	}
+    - parameter scrollEnabled: `Bool` which enables or disables the scrolling between `FolioReaderPage`s.
+    */
+    open func enableScrollBetweenChapters(scrollEnabled: Bool) {
+        self.collectionView.isScrollEnabled = scrollEnabled
+    }
 
-	fileprivate func updateSubviewFrames() {
-		self.pageIndicatorView?.frame = self.frameForPageIndicatorView()
-		self.scrollScrubber?.frame = self.frameForScrollScrubber()
-	}
+    fileprivate func updateSubviewFrames() {
+        self.pageIndicatorView?.frame = self.frameForPageIndicatorView()
+        self.scrollScrubber?.frame = self.frameForScrollScrubber()
+    }
 
-	fileprivate func frameForPageIndicatorView() -> CGRect {
-		return CGRect(x: 0, y: view.frame.height-pageIndicatorHeight, width: view.frame.width, height: pageIndicatorHeight)
-	}
+    fileprivate func frameForPageIndicatorView() -> CGRect {
+        return CGRect(x: 0, y: view.frame.height-pageIndicatorHeight, width: view.frame.width, height: pageIndicatorHeight)
+    }
 
-	fileprivate func frameForScrollScrubber() -> CGRect {
-		let scrubberY: CGFloat = ((readerConfig.shouldHideNavigationOnTap == true || readerConfig.hideBars == true) ? 50 : 74)
-		return CGRect(x: pageWidth + 10, y: scrubberY, width: 40, height: pageHeight - 100)
-	}
+    fileprivate func frameForScrollScrubber() -> CGRect {
+        let scrubberY: CGFloat = ((readerConfig.shouldHideNavigationOnTap == true || readerConfig.hideBars == true) ? 50 : 74)
+        return CGRect(x: pageWidth + 10, y: scrubberY, width: 40, height: pageHeight - 100)
+    }
 
-    func configureNavBar() {
+    open func configureNavBar() {
         let navBackground = isNight(readerConfig.nightModeMenuBackground, UIColor.white)
         let tintColor = readerConfig.tintColor
         let navText = isNight(UIColor.white, UIColor.black)
@@ -228,7 +228,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         setTranslucentNavigation(color: navBackground, tintColor: tintColor, titleColor: navText, andFont: font)
     }
     
-    func configureNavBarButtons() {
+    open func configureNavBarButtons() {
 
         // Navbar buttons
         let shareIcon = UIImage(readerImageNamed: "icon-navbar-share")?.ignoreSystemTint()
