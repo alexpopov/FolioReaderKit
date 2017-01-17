@@ -14,8 +14,8 @@ var book: FRBook!
 
 /// Reader container
 open class FolioReaderContainer: UIViewController {
-    var centerNavigationController: UINavigationController!
-	var centerViewController: FolioReaderCenter!
+    open var centerNavigationController: UINavigationController!
+    open var centerViewController: FolioReaderCenter!
     var audioPlayer: FolioReaderAudioPlayer!
     var shouldHideStatusBar = true
     var shouldRemoveEpub = true
@@ -104,9 +104,9 @@ open class FolioReaderContainer: UIViewController {
             readerConfig.scrollDirection = scrollDirection
         }
 
-		readerConfig.shouldHideNavigationOnTap = ((readerConfig.hideBars == true) ? true : readerConfig.shouldHideNavigationOnTap)
+        readerConfig.shouldHideNavigationOnTap = ((readerConfig.hideBars == true) ? true : readerConfig.shouldHideNavigationOnTap)
 
-        centerViewController = FolioReaderCenter()
+        centerViewController = setupCenterViewController()
         FolioReader.shared.readerCenter = centerViewController
         
         centerNavigationController = UINavigationController(rootViewController: centerViewController)
@@ -115,11 +115,11 @@ open class FolioReaderContainer: UIViewController {
         addChildViewController(centerNavigationController)
         centerNavigationController.didMove(toParentViewController: self)
 
-		if (readerConfig.hideBars == true) {
-			readerConfig.shouldHideNavigationOnTap = false
-			self.navigationController?.navigationBar.isHidden = true
-			self.centerViewController.pageIndicatorHeight = 0
-		}
+        if (readerConfig.hideBars == true) {
+          readerConfig.shouldHideNavigationOnTap = false
+          self.navigationController?.navigationBar.isHidden = true
+          self.centerViewController.pageIndicatorHeight = 0
+        }
 
         // Read async book
         guard !epubPath.isEmpty else {
@@ -153,6 +153,10 @@ open class FolioReaderContainer: UIViewController {
                 FolioReader.shared.delegate?.folioReader?(FolioReader.shared, didFinishedLoading: book)
             })
         }
+    }
+  
+    open func setupCenterViewController() -> FolioReaderCenter {
+      return FolioReaderCenter()
     }
     
     override open func viewDidAppear(_ animated: Bool) {
