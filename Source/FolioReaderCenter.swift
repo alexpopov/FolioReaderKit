@@ -71,10 +71,10 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     var pages: [String]!
     var totalPages: Int!
     var tempFragment: String?
-	open fileprivate(set) var currentPage: FolioReaderPage?
+    open fileprivate(set) var currentPage: FolioReaderPage?
     var animator: ZFModalTransitionAnimator!
     var pageIndicatorView: FolioReaderPageIndicator?
-	var pageIndicatorHeight: CGFloat = 20
+    var pageIndicatorHeight: CGFloat = 20
 
     var recentlyScrolled = false
     var recentlyScrolledDelay = 2.0 // 2 second delay until we clear recentlyScrolled
@@ -86,12 +86,12 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     fileprivate var pageOffsetRate: CGFloat = 0
     fileprivate var tempReference: FRTocReference?
     fileprivate var isFirstLoad = true
-	fileprivate var currentWebViewScrollPositions = [Int: CGPoint]()
-	fileprivate var currentOrientation: UIInterfaceOrientation?
+    fileprivate var currentWebViewScrollPositions = [Int: CGPoint]()
+    fileprivate var currentOrientation: UIInterfaceOrientation?
     
     // MARK: - Init
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: Bundle.frameworkBundle())
         initialization()
     }
@@ -147,7 +147,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = background
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-		enableScrollBetweenChapters(scrollEnabled: true)
+        enableScrollBetweenChapters(scrollEnabled: true)
         view.addSubview(collectionView)
         
         if #available(iOS 10.0, *) {
