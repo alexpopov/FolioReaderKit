@@ -127,9 +127,7 @@ open class FolioReaderConfig: NSObject {
     open var nightModeSeparatorColor = UIColor(white: 0.5, alpha: 0.2)
     
     /// Media overlay or TTS selection color
-    open var mediaOverlayColor: UIColor {
-      return tintColor
-    }
+    open var mediaOverlayColor = UIColor(rgba: "#6ACC50") // same as `tintColor` above. 
     
     // MARK: Custom actions
     
